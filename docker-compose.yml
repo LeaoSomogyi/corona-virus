@@ -1,0 +1,18 @@
+version: '3.0'
+
+networks: 
+    corona-network:
+        driver: bridge
+
+services:
+    corona-client:
+        ports: 
+            - "4200:4200"
+        container_name: corona-client
+        image: corona-client
+        restart: always
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks: 
+            - corona-network

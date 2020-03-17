@@ -1,0 +1,36 @@
+<section class="main" *ngIf="isLoaded">
+    <div class="row">
+        <div class="col-4">
+            <h2>País: {{countryTotal.countrydata[0].info.title}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h3>
+                <i class="fas fa-biohazard fa-2x"></i> Número de casos: {{countryTotal.countrydata[0].total_cases}}
+            </h3>
+        </div>
+        <div class="col-4">
+            <h3>
+                <i class="fas fa-exclamation-circle fa-2x"></i> Número de casos hoje: {{countryTotal.countrydata[0].total_new_cases_today}}
+            </h3>
+        </div>
+        <div class="col-4">
+            <h3>
+                <i class="fas fa-skull-crossbones fa-2x"></i> Número de mortes: {{countryTotal.countrydata[0].total_deaths}}
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h3>
+                <i class="fas fa-heart fa-2x"></i> Número de pessoas curadas: {{countryTotal.countrydata[0].total_recovered}}
+            </h3>
+        </div>
+        <div class="col-4">
+            <h3>
+                <i class="fas fa-heartbeat fa-2x"></i> Número de casos graves: {{countryTotal.countrydata[0].total_serious_cases}}
+            </h3>
+        </div>
+    </div>
+</section>

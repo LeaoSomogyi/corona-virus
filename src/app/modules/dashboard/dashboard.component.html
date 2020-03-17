@@ -1,0 +1,11 @@
+<section class="main">
+    <div class="row">
+        <div class="col-12" *ngIf="isLoaded">
+            <h2 class="mb-5">Crescimento dia a dia</h2>
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                [chartType]="barChartType">
+            </canvas>
+        </div>
+    </div>
+</section>
