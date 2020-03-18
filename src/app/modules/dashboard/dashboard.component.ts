@@ -20,6 +20,8 @@ export class DashboardComponent implements OnInit {
     isLoaded: boolean;
     barChartOptions: ChartOptions = {
         responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 1,
         scales: {
             xAxes: [{
                 gridLines: {
