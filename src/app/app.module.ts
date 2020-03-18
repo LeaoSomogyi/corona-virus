@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, enableProdMode } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,8 +12,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { environment } from 'src/environments/environment';
 
 registerLocaleData(localePt, 'pt-BR');
+
+if (environment.production) {
+  enableProdMode();
+}
 
 @NgModule({
   declarations: [
