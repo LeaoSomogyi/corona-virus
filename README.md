@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
 
+Using the [The Virus Tracker API](https://thevirustracker.com/api) to generate charts and information.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
