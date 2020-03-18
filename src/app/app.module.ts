@@ -8,6 +8,12 @@ import { CustomHttpInterceptor } from './core/interceptors/http-interceptor';
 import { MaterialModule } from './shared/material/material.module';
 import { PrincipalModule } from './modules/principal.module';
 import { AppRoutingModule } from './app.routing';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
@@ -20,11 +26,12 @@ import { AppRoutingModule } from './app.routing';
     NgbModule,
     MaterialModule,
     PrincipalModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
-    { provide: LOCALE_ID, useValue: 'pt' },
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
 })

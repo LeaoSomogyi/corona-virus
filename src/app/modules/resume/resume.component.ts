@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VirusTrackerService } from 'src/app/core/services/virus-tracker.service';
 import { CountryTotal } from 'src/app/shared/models/country-total.model';
+import { CountryNews } from 'src/app/shared/models/country-news.model';
 
 @Component({
     selector: 'app-resume',
@@ -15,14 +16,26 @@ export class ResumeComponent implements OnInit {
     @Input()
     countryCode: string;
 
-    constructor(private _virusService: VirusTrackerService) { 
+    @Output()
+    countryNews = new EventEmitter();
+
+    constructor(private _virusService: VirusTrackerService) {
         this.isLoaded = false;
     }
 
     ngOnInit(): void {
-        this._virusService.getCountryTotal(this.countryCode).subscribe((data: CountryTotal) => {
+        this.loadData(this.countryCode);
+    }
+
+    loadData(countryCode: string) {
+        this._virusService.getCountryTotal(countryCode).subscribe((data: CountryTotal) => {
             this.countryTotal = data;
             this.isLoaded = true;
+            this.emit(this.countryTotal.countrynewsitems);
         });
+    }
+
+    emit(news: Array<CountryNews>) {
+        this.countryNews.emit(news);
     }
 }

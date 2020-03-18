@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '../shared/material/material.module';
 import { HomeComponent } from './home/home.component';
@@ -9,24 +8,28 @@ import { VirusTrackerService } from '../core/services/virus-tracker.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
     declarations: [
         HomeComponent,
         ResumeComponent,
-        DashboardComponent
+        DashboardComponent,
+        NewsComponent
     ],
     imports: [
         NgbModule,
         MaterialModule,
         ChartsModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgxPaginationModule
     ],
     exports: [
         HomeComponent,
         ResumeComponent,
-        DashboardComponent
+        DashboardComponent,
+        NewsComponent
     ],
     providers: [
         VirusTrackerService

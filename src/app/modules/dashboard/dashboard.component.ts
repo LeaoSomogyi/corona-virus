@@ -69,7 +69,11 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this._virusService.getCountryTimeline(this.countryCode).subscribe((data: CountryTimeline) => {
+        this.loadData(this.countryCode);
+    }
+
+    loadData(countryCode: string) {
+        this._virusService.getCountryTimeline(countryCode).subscribe((data: CountryTimeline) => {
             let days = data.timelineitems.map(t => Object.keys(t).filter(k => k !== 'stat'))[0];
             this.barChartLabels = days;
             this.barChartData = [

@@ -1,0 +1,33 @@
+<section class="main mt-2" *ngIf="isLoaded">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-5">Repercussão em mídias internacionais</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-12"
+            *ngFor="let news of paginatedNews | paginate: { id: 'news', currentPage: skip, itemsPerPage: top, totalItems: totalPages }">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">{{news.newsid}}</strong>
+                    <h3 class="mb-0">{{news.title}}</h3>
+                    <div class="mb-1 text-muted">{{news.time}}</div>
+                    <a href="{{news.url}}" class="stretched-link">Ler notícia</a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img class="card-img-top" src="{{news.image}}" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-12"></div>
+        <div class="col-lg-6 col-12">
+            <pagination-controls id="news" (pageChange)="filterNews($event)" responsive="true" previousLabel="Anterior"
+                nextLabel="Próximo">
+            </pagination-controls>
+        </div>
+        <div class="col-lg-3 col-12"></div>
+    </div>
+</section>
