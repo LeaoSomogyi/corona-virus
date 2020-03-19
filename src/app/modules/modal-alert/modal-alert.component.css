@@ -1,0 +1,30 @@
+.modal-alert .content {
+    position: relative;
+}
+
+.modal-alert .modal-body p {
+    line-height: 20px;
+    padding: 0 50px;
+    text-align: center;
+}
+
+.modal-body h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.modal-footer .btn-ok-modal {
+    width: 100%;
+}
+
+.modal-body .icon {
+    color: red;
+    font-size: 40px;
+    float: left;
+}

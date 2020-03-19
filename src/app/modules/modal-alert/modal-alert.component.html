@@ -1,0 +1,13 @@
+<div class="modal-alert">
+    <div class="content pt-3">
+        <div class="modal-body">
+            <i class="icon {{ iconClass }}"></i>
+            <p [innerHTML]="message"></p>
+        </div>
+        <div class="modal-footer row justify-content-center pb-5">
+            <div class="col-3">
+                <button type="button" (click)="close()" class="btn afm-btn-primary btn-ok-modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>

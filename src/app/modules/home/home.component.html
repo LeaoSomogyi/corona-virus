@@ -17,7 +17,8 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <app-resume *ngIf="selectedCountry" [countryCode]="selectedCountry" (countryNews)="receiver($event)"></app-resume>
+                <app-resume *ngIf="selectedCountry" [countryCode]="selectedCountry" (countryNews)="receiver($event)">
+                </app-resume>
             </div>
         </div>
         <div class="row">

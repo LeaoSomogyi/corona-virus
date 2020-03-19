@@ -3,6 +3,7 @@ import { ChartType, ChartOptions, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts'
 import { VirusTrackerService } from 'src/app/core/services/virus-tracker.service';
 import { CountryTimeline } from 'src/app/shared/models/country-timeline.model';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -66,7 +67,8 @@ export class DashboardComponent implements OnInit {
     barChartLabels: Label[];
     barChartData: ChartDataSets[];
 
-    constructor(private _virusService: VirusTrackerService) {
+    constructor(private _virusService: VirusTrackerService,
+        private _alertService: AlertService) {
         this.isLoaded = false;
     }
 
@@ -102,6 +104,8 @@ export class DashboardComponent implements OnInit {
             ];
 
             this.isLoaded = true;
+        }, () => {
+            this._alertService.showError('Ops! Tivemos problemas ao obter os dados para o dashboard =/');
         });
     }
 }

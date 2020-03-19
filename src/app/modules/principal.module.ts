@@ -9,13 +9,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NewsComponent } from './news/news.component';
+import { ModalAlertComponent } from './modal-alert/modal-alert.component';
 
 @NgModule({
     declarations: [
         HomeComponent,
         ResumeComponent,
         DashboardComponent,
-        NewsComponent
+        NewsComponent,
+        ModalAlertComponent
     ],
     imports: [
         NgbModule,
@@ -29,7 +31,8 @@ import { NewsComponent } from './news/news.component';
         HomeComponent,
         ResumeComponent,
         DashboardComponent,
-        NewsComponent
+        NewsComponent,
+        ModalAlertComponent
     ],
     providers: [
         VirusTrackerService
