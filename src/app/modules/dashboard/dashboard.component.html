@@ -1,8 +1,24 @@
 <section class="main mt-2" *ngIf="isLoaded">
     <div class="row">
-        <div class="col-12" *ngIf="isLoaded">
-            <h2 class="mb-5">Crescimento dia a dia</h2>
-            <canvas class="chart" baseChart [datasets]="barChartData" [labels]="barChartLabels"
+        <div class="col-12" *ngIf="isLoaded">            
+            <div class="row mb-3">
+                <div class="col-lg-3 col-12">
+                    <h2 class="mb-5">Crescimento dia a dia</h2>
+                </div>
+                <div class="col-lg-1.5">
+                    <button class="btn btn-primary mr-2" (click)="setChartData('5')">5 dias</button>
+                </div>
+                <div class="col-lg-1.5">
+                    <button class="btn btn-primary mr-2" (click)="setChartData('15')">15 dias</button>
+                </div>
+                <div class="col-lg-1.5">
+                    <button class="btn btn-primary mr-2" (click)="setChartData('30')">30 dias</button>
+                </div>
+                <div class="col-lg-1.5">
+                    <button class="btn btn-primary" (click)="setChartData('all')">Tudo</button>
+                </div>
+            </div>
+            <canvas class="chart mt-2" baseChart [datasets]="barChartData" [labels]="barChartLabels"
                 [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
                 [chartType]="barChartType">
             </canvas>
