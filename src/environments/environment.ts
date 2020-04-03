@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://thevirustracker.com/free-api?'
+  apiUrl: 'https://api.thevirustracker.com/free-api?'
 };
 
 /*
