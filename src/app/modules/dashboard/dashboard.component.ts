@@ -4,6 +4,7 @@ import { Label } from 'ng2-charts'
 import { VirusTrackerService } from 'src/app/core/services/virus-tracker.service';
 import { CountryTimeline } from 'src/app/shared/models/country-timeline.model';
 import { AlertService } from 'src/app/core/services/alert.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-dashboard',
@@ -16,10 +17,10 @@ import { AlertService } from 'src/app/core/services/alert.service';
 export class DashboardComponent implements OnInit {
 
     @Input()
-    countryCode: string;
+    public countryCode: string;
 
-    isLoaded: boolean;
-    barChartOptions: ChartOptions = {
+    public isLoaded: boolean;
+    public barChartOptions: ChartOptions = {
         responsive: true,
         maintainAspectRatio: true,
         aspectRatio: 1,
@@ -60,21 +61,23 @@ export class DashboardComponent implements OnInit {
             }
         }
     };
+    public barChartType: ChartType = 'bar';
+    public barChartLegend = true;
+    public barChartPlugins = [];
+    public barChartLabels: Label[];
+    public barChartData: ChartDataSets[];
 
-    barChartType: ChartType = 'bar';
-    barChartLegend = true;
-    barChartPlugins = [];
-    barChartLabels: Label[];
-    barChartData: ChartDataSets[];
-    allDays: string[];
-    allNewCases: number[];
-    allNewDeaths: number[];
-    allTotalCases: number[];
-    allTotalRecoveries: number[];
-    allTotalDeaths: number[];
+    private allDays: string[];
+    private allNewCases: number[];
+    private allNewDeaths: number[];
+    private allTotalCases: number[];
+    private allTotalRecoveries: number[];
+    private allTotalDeaths: number[];
 
-    constructor(private _virusService: VirusTrackerService,
-        private _alertService: AlertService) {
+    constructor(
+        private _virusService: VirusTrackerService,
+        private _alertService: AlertService,
+        private _datepipe: DatePipe) {
         this.isLoaded = false;
     }
 
@@ -82,7 +85,7 @@ export class DashboardComponent implements OnInit {
         this.loadData(this.countryCode);
     }
 
-    loadData(countryCode: string) {
+    public loadData(countryCode: string): void {
         this._virusService.getCountryTimeline(countryCode).subscribe((data: CountryTimeline) => {
             this.allDays = data.timelineitems.map(t => Object.keys(t).filter(k => k !== 'stat'))[0];
             this.allNewCases = data.timelineitems.map(t => this.allDays.map(d => t[d].new_daily_cases))[0];
@@ -91,7 +94,7 @@ export class DashboardComponent implements OnInit {
             this.allTotalRecoveries = data.timelineitems.map(t => this.allDays.map(d => t[d].total_recoveries))[0];
             this.allTotalDeaths = data.timelineitems.map(t => this.allDays.map(d => t[d].total_deaths))[0];
 
-            let days = [...this.allDays].reverse().slice(0, 5).reverse();
+            let days = [...this.allDays.map(date => this._datepipe.transform(date, 'dd/MM/yyyy'))].reverse().slice(0, 5).reverse();
             this.barChartLabels = [...days];
             this.barChartData = [
                 {
@@ -122,10 +125,10 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    setChartData(period: string) {
+    public setChartData(period: string): void {
         switch (period) {
             case '5':
-                this.barChartLabels = [...this.allDays].reverse().slice(0, 5).reverse();
+                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, 'dd/MM/yyyy'))].reverse().slice(0, 5).reverse();
                 this.barChartData = [
                     {
                         data: [...this.allNewCases].reverse().slice(0, 5).reverse(),
@@ -150,7 +153,7 @@ export class DashboardComponent implements OnInit {
                 ];
                 break;
             case '15':
-                this.barChartLabels = [...this.allDays].reverse().slice(0, 15).reverse();
+                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, 'dd/MM/yyyy'))].reverse().slice(0, 15).reverse();
                 this.barChartData = [
                     {
                         data: [...this.allNewCases].reverse().slice(0, 15).reverse(),
@@ -176,7 +179,7 @@ export class DashboardComponent implements OnInit {
 
                 break;
             case '30':
-                this.barChartLabels = [...this.allDays].reverse().slice(0, 30).reverse();
+                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, 'dd/MM/yyyy'))].reverse().slice(0, 30).reverse();
                 this.barChartData = [
                     {
                         data: [...this.allNewCases].reverse().slice(0, 30).reverse(),
@@ -202,7 +205,7 @@ export class DashboardComponent implements OnInit {
 
                 break;
             default:
-                this.barChartLabels = [...this.allDays];
+                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, 'dd/MM/yyyy'))];
                 this.barChartData = [
                     {
                         data: [...this.allNewCases],

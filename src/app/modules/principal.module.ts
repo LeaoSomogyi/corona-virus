@@ -8,15 +8,14 @@ import { VirusTrackerService } from '../core/services/virus-tracker.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { NewsComponent } from './news/news.component';
 import { ModalAlertComponent } from './modal-alert/modal-alert.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
     declarations: [
         HomeComponent,
         ResumeComponent,
         DashboardComponent,
-        NewsComponent,
         ModalAlertComponent
     ],
     imports: [
@@ -31,11 +30,11 @@ import { ModalAlertComponent } from './modal-alert/modal-alert.component';
         HomeComponent,
         ResumeComponent,
         DashboardComponent,
-        NewsComponent,
         ModalAlertComponent
     ],
     providers: [
-        VirusTrackerService
+        VirusTrackerService,
+        DatePipe
     ],
     bootstrap: []
 })

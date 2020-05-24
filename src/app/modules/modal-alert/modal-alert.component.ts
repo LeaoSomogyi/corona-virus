@@ -15,22 +15,22 @@ export class ModalAlertComponent {
 
     constructor(private modal: NgbActiveModal) { }
 
-    setMessage(message: string, icon: string) {
+    public setMessage(message: string, icon: string): void {
         this.iconClass = icon;
         this.message = message;
     }
 
-    setSuccess(message: string) {
+    public setSuccess(message: string): void {
         this.iconClass = 'fas fa-check-circle';
         this.message = message;
     }
 
-    setError(message: string) {
+    public setError(message: string): void {
         this.iconClass = 'fas fa-times-circle';
         this.message = message;
     }
 
-    close() {
+    public close(): void {
         this.closeExecute.emit(this.content);
         this.modal.close();
     }

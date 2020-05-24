@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SelectItem } from 'src/app/shared/models/select-item.model';
 import { CountryService } from 'src/app/core/services/country.service';
-import { CountryNews } from 'src/app/shared/models/country-news.model';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ResumeComponent } from '../resume/resume.component';
-import { NewsComponent } from '../news/news.component';
+import { GlobalResume } from 'src/app/shared/models/global-resume.model';
+import { VirusTrackerService } from 'src/app/core/services/virus-tracker.service';
 
 @Component({
     selector: 'app-home',
@@ -17,33 +17,32 @@ import { NewsComponent } from '../news/news.component';
 export class HomeComponent implements OnInit {
     @ViewChild(DashboardComponent) dashboard: DashboardComponent;
     @ViewChild(ResumeComponent) resume: ResumeComponent;
-    @ViewChild(NewsComponent) news: NewsComponent;
 
-    countries: Array<SelectItem>;
-    selectedCountry: string;
-    countryNews: Array<CountryNews>;
-    firstNewsLoad: boolean;
+    public countries: Array<SelectItem>;
+    public selectedCountry: string;
+    public globalResume: GlobalResume;
+    public isLoaded: boolean;
 
-    constructor(private _countryService: CountryService) { }
+    constructor(
+        private _countryService: CountryService,
+        private _virusTrackerService: VirusTrackerService) { }
 
     ngOnInit(): void {
         this.countries = this._countryService.getAllCountries();
-        this.firstNewsLoad = true;
+        this.loadGlobalStats();
     }
 
-    receiver(event) {
-        this.countryNews = event;
-
-        if (!this.firstNewsLoad && this.news) {
-            this.news.setNews(this.countryNews);
-        }
+    public loadGlobalStats(): void {
+        this._virusTrackerService.getGlobalResume().subscribe((data: GlobalResume) => {
+            this.globalResume = data;
+            this.isLoaded = true;
+        });
     }
 
-    reload() {
+    public reload(): void {
         if (this.selectedCountry && this.dashboard && this.resume) {
             this.dashboard.loadData(this.selectedCountry);
             this.resume.loadData(this.selectedCountry);
-            this.firstNewsLoad = false;
         }
     }
 }

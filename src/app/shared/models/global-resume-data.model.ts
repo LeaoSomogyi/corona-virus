@@ -1,7 +1,4 @@
-import { CountryInfo } from './country-info.model';
-
-export class CountryData {
-    info: CountryInfo;
+export class GlobalResumeData {
     total_cases: number;
     total_recovered: number;
     total_unresolved: number;
@@ -10,5 +7,5 @@ export class CountryData {
     total_new_deaths_today: number;
     total_active_cases: number;
     total_serious_cases: number;
-    total_danger_rank: number;
+    total_affected_countries: number;
 }

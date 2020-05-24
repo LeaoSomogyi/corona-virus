@@ -5,6 +5,8 @@
     top: 0;
     width: 100%;
     z-index: 10;
+    background-color: lightgray;
+    opacity: 0.7;
     
     /*display: flex or inline-flex */
     display: -webkit-flex;
