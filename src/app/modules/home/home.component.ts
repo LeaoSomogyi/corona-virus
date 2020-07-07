@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SelectItem } from 'src/app/shared/models/select-item.model';
-import { CountryService } from 'src/app/core/services/country.service';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { ResumeComponent } from '../resume/resume.component';
-import { GlobalResume } from 'src/app/shared/models/global-resume.model';
-import { VirusTrackerService } from 'src/app/core/services/virus-tracker.service';
+import { SelectItem } from '@models/select-item.model';
+import { CountryService } from '@services/country.service';
+import { DashboardComponent } from '@components/dashboard/dashboard.component';
+import { ResumeComponent } from '@components/resume/resume.component';
+import { GlobalResume } from '@models/global-resume.model';
+import { VirusTrackerService } from '@services/virus-tracker.service';
 
 @Component({
     selector: 'app-home',

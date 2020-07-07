@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { VirusTrackerService } from 'src/app/core/services/virus-tracker.service';
-import { CountryTotal } from 'src/app/shared/models/country-total.model';
-import { AlertService } from 'src/app/core/services/alert.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { VirusTrackerService } from '@services/virus-tracker.service';
+import { CountryTotal } from '@models/country-total.model';
+import { AlertService } from '@services/alert.service';
 
 @Component({
     selector: 'app-resume',

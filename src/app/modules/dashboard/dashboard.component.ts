@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartType, ChartOptions, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts'
-import { VirusTrackerService } from 'src/app/core/services/virus-tracker.service';
-import { CountryTimeline } from 'src/app/shared/models/country-timeline.model';
-import { AlertService } from 'src/app/core/services/alert.service';
+import { VirusTrackerService } from '@services/virus-tracker.service';
+import { CountryTimeline } from '@models/country-timeline.model';
+import { AlertService } from '@services/alert.service';
 import { DatePipe } from '@angular/common';
 
 @Component({
