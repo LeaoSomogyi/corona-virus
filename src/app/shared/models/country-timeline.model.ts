@@ -1,6 +1,6 @@
-import { CountryInfo } from './country-info.model';
+import { CountryInfo } from '@models/country-info.model';
 import { KeyValue } from '@angular/common';
-import { CountryTimelineData } from './country-timeline-data.model';
+import { CountryTimelineData } from '@models/country-timeline-data.model';
 
 export class CountryTimeline {
     countrytimelinedata: Array<CountryInfo>;

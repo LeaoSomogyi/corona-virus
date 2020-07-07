@@ -1,4 +1,4 @@
-import { CountryData } from './country-data.model';
+import { CountryData } from '@models/country-data.model';
 
 export class CountryTotal {
     countrydata: Array<CountryData>;

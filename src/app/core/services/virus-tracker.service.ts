@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CountryTotal } from 'src/app/shared/models/country-total.model';
+import { CountryTotal } from '@models/country-total.model';
 import { environment } from 'src/environments/environment';
-import { CountryTimeline } from 'src/app/shared/models/country-timeline.model';
-import { GlobalResume } from 'src/app/shared/models/global-resume.model';
+import { CountryTimeline } from '@models/country-timeline.model';
+import { GlobalResume } from '@models/global-resume.model';
 
 @Injectable()
 export class VirusTrackerService {

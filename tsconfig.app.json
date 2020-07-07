@@ -5,7 +5,8 @@
     "paths": {
       "@components/*": ["./src/app/modules/*"],
       "@models/*": ["./src/app/shared/models/*"],
-      "@services/*": ["./src/app/core/services/*"]
+      "@services/*": ["./src/app/core/services/*"],
+      "@interceptors/*": ["./src/app/core/interceptors/*"]
     },
     "outDir": "./out-tsc/app",
     "types": []

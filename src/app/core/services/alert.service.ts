@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalAlertComponent } from 'src/app/modules/modal-alert/modal-alert.component';
+import { ModalAlertComponent } from '@components/modal-alert/modal-alert.component';
 
 @Injectable({
     providedIn: 'root'
