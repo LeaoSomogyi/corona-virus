@@ -83,7 +83,7 @@ export class TextService {
         textDashboard.day_5 = '5 days';
         textDashboard.day_15 = '15 days';
         textDashboard.day_30 = '30 days';
-        textDashboard.all = 'Everything';
+        textDashboard.all = 'All';
         textDashboard.total_cases_today = 'New cases today';
         textDashboard.total_deaths_today = 'New deaths today';
         textDashboard.total_cases = 'Number of cases';

@@ -7,10 +7,6 @@ export const AppConstants = {
         Countries: {
             Name: 'corona-virus-app.countries',
             IsObject: true
-        },
-        GlobalStats: {
-            Name: 'corona-virus-app.global_stats',
-            IsObject: true
         }
     }
 }

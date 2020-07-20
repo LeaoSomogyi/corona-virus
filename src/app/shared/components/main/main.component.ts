@@ -14,7 +14,7 @@ export class MainComponent implements OnInit {
 
     country: string;
     selectedCountry: TextMain;
-    availableCountries: Array<TextMain>;
+    textMains: Array<TextMain>;
 
     constructor(
         private _storageService: StorageService,
@@ -27,20 +27,20 @@ export class MainComponent implements OnInit {
     }
 
     public init(): void {
-        this.availableCountries = this._textService.getMain();
+        this.textMains = this._textService.getMain();
 
         let country = this._countryService.getLanguage();
         if (country) {
             this.country = country;
-            this.selectedCountry = this.availableCountries.find(x => x.language == country);
+            this.selectedCountry = this.textMains.find(x => x.language == country);
         } else {
-            this.selectedCountry = this.availableCountries[0];
+            this.selectedCountry = this.textMains[0];
         }
     }
 
     public setCountry(country: string): void {
         this._storageService.removeAll();
         this._countryService.setLanguage(country);
-        this.selectedCountry = this.availableCountries.find(x => x.language == country);
+        this.selectedCountry = this.textMains.find(x => x.language == country);
     }
 }

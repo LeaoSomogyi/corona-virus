@@ -93,7 +93,7 @@ export class DashboardComponent implements OnInit {
         this.languageChanged = this._countryService.languageChanged.subscribe({
             next: (newValue: string) => {
                 if (newValue) {
-                    this.selectedText = this.textDashboards.find(x => x.language == newValue);
+                    this.selectedText = this.textDashboards?.find(x => x.language == newValue);
                     this.setChartData('5');
                 }
             }
