@@ -3,19 +3,19 @@
         <div class="col-12" *ngIf="isLoaded">            
             <div class="row mb-3">
                 <div class="col-lg-3 col-12">
-                    <h2 class="mb-5">Crescimento dia a dia</h2>
+                    <h2 class="mb-5">{{ selectedText.growth_message }}</h2>
                 </div>
                 <div class="col-lg-1.5">
-                    <button class="btn btn-primary mr-2" (click)="setChartData('5')">5 dias</button>
+                    <button class="btn btn-primary mr-2" (click)="setChartData('5')">{{ selectedText.day_5 }}</button>
                 </div>
                 <div class="col-lg-1.5">
-                    <button class="btn btn-primary mr-2" (click)="setChartData('15')">15 dias</button>
+                    <button class="btn btn-primary mr-2" (click)="setChartData('15')">{{ selectedText.day_15 }}</button>
                 </div>
                 <div class="col-lg-1.5">
-                    <button class="btn btn-primary mr-2" (click)="setChartData('30')">30 dias</button>
+                    <button class="btn btn-primary mr-2" (click)="setChartData('30')">{{ selectedText.day_30 }}</button>
                 </div>
                 <div class="col-lg-1.5">
-                    <button class="btn btn-primary" (click)="setChartData('all')">Tudo</button>
+                    <button class="btn btn-primary" (click)="setChartData('all')">{{ selectedText.all }}</button>
                 </div>
             </div>
             <canvas class="chart mt-2" baseChart [datasets]="barChartData" [labels]="barChartLabels"

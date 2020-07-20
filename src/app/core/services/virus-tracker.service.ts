@@ -6,7 +6,9 @@ import { environment } from 'src/environments/environment';
 import { CountryTimeline } from '@models/country-timeline.model';
 import { GlobalResume } from '@models/global-resume.model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class VirusTrackerService {
 
     constructor(private _httpClient: HttpClient) { }

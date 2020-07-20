@@ -1,0 +1,62 @@
+<header>
+  <div class="bg-dark collapse" id="navbarHeader" style>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">{{ selectedCountry.about }}</h4>
+          <p class="text-muted" [innerHTML]="selectedCountry.description"></p>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4 class="text-white">{{ selectedCountry.contact }}</h4>
+          <ul class="list-unstyled">
+            <li><a href="https://twitter.com/Fsomogyi" target="_blank" class="text-white"><i class="fab fa-twitter"></i>
+                {{ selectedCountry.twitter }}</a></li>
+            <li><a href="https://www.linkedin.com/in/felipe-leao-somogyi/" target="_blank" class="text-white"><i
+                  class="fab fa-linkedin"></i> {{ selectedCountry.linkedin }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <i class="fa-2x fa fa-biohazard"></i>&nbsp;
+        <strong>Corona Vírus Data</strong>
+      </a>
+      <div class="d-flex flex-row">
+        <a href="javascript:;" (click)="setCountry('br')" class="navbar-brand d-flex align-items-center p-2">
+          <img src="./assets/img/brazil.png" class="img-fluid rounded-circle" alt="PT-BR" width="40"> &nbsp;
+          <strong [class.active]="selectedCountry?.language == 'br' ? true : null">PT-BR</strong>
+        </a>
+        <a href="javascript:;" (click)="setCountry('en')" class="navbar-brand d-flex align-items-center p-2">
+          <img src="./assets/img/united-kingdom.png" class="img-fluid rounded-circle" alt="EN" width="40"> &nbsp;
+          <strong [class.active]="selectedCountry?.language == 'en' ? true : null">EN</strong>
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader"
+          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+<main role="main">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>{{ selectedCountry.h1 }}</h1>
+      <p class="lead text-muted" [innerHTML]="selectedCountry.main_description"></p>
+      <p>
+        <a href="https://thevirustracker.com/api" target="_blank"
+          class="btn btn-primary my-2">{{ selectedCountry.doc }}</a>
+      </p>
+    </div>
+  </section>
+  <router-outlet></router-outlet>
+</main>
+<footer class="blog-footer">
+  <p>Build by <a href="https://github.com/LeaoSomogyi" target="_blank"><i class="fab fa-github"></i> LeaoSomogyi</a></p>
+  <p>
+    <a href="#">{{ selectedCountry.back }}</a>
+  </p>
+</footer>

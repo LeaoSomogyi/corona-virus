@@ -1,8 +1,8 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MaterialModule } from '../shared/material/material.module';
-import { HomeComponent } from '@components/home/home.component';
+import { MaterialModule } from '@shared/material/material.module';
+import { SharedModule } from '@shared/shared.module';
 import { ResumeComponent } from '@components/resume/resume.component';
 import { VirusTrackerService } from '@services/virus-tracker.service';
 import { DashboardComponent } from '@components/dashboard/dashboard.component';
@@ -13,7 +13,6 @@ import { DatePipe } from '@angular/common';
 
 @NgModule({
     declarations: [
-        HomeComponent,
         ResumeComponent,
         DashboardComponent,
         ModalAlertComponent
@@ -24,16 +23,15 @@ import { DatePipe } from '@angular/common';
         ChartsModule,
         FormsModule,
         ReactiveFormsModule,
-        NgxPaginationModule
+        NgxPaginationModule, 
+        SharedModule
     ],
     exports: [
-        HomeComponent,
         ResumeComponent,
         DashboardComponent,
         ModalAlertComponent
     ],
     providers: [
-        VirusTrackerService,
         DatePipe
     ],
     bootstrap: []

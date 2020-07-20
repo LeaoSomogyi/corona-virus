@@ -4,57 +4,57 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-lg-4 col-12">
-                        <h2>Estatísticas Globais</h2>
+                        <h2>{{ selectedTextHome.global_stats }}</h2>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-12">
                         <h3>
-                            <i class="fas fa-biohazard fa-2x"></i> Número de casos: {{globalResume.results[0].total_cases}}
+                            <i class="fas fa-biohazard fa-2x"></i> {{ selectedTextHome.total_cases }} {{globalResume.results[0].total_cases}}
                         </h3>
                     </div>
                     <div class="col-lg-4 col-12">
                         <h3>
-                            <i class="fas fa-book-dead fa-2x"></i> Número de mortes: {{globalResume.results[0].total_deaths}}
+                            <i class="fas fa-book-dead fa-2x"></i> {{ selectedTextHome.total_deaths }} {{globalResume.results[0].total_deaths}}
                         </h3>
                     </div>
                     <div class="col-lg-4 col-12">
                         <h3>
-                            <i class="fas fa-heart fa-2x"></i> Número de pessoas curadas: {{globalResume.results[0].total_recovered}}
-                        </h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-12">
-                        <h3>
-                            <i class="fas fa-question-circle fa-2x"></i> Número de casos não resolvidos: {{globalResume.results[0].total_unresolved}}
-                        </h3>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <h3>
-                            <i class="fas fa-stethoscope fa-2x"></i> Número de casos ativos: {{globalResume.results[0].total_active_cases}}
-                        </h3>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <h3>
-                            <i class="fas fa-globe fa-2x"></i> Número de países afetados: {{globalResume.results[0].total_affected_countries}}
+                            <i class="fas fa-heart fa-2x"></i> {{ selectedTextHome.total_recovered }} {{globalResume.results[0].total_recovered}}
                         </h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-12">
                         <h3>
-                            <i class="fas fa-exclamation-circle fa-2x"></i> Número de casos hoje: {{globalResume.results[0].total_new_cases_today}}
+                            <i class="fas fa-question-circle fa-2x"></i> {{ selectedTextHome.total_unresolved }} {{globalResume.results[0].total_unresolved}}
                         </h3>
                     </div>
                     <div class="col-lg-4 col-12">
                         <h3>
-                            <i class="fas fa-skull-crossbones fa-2x"></i> Número de mortes hoje: {{globalResume.results[0].total_new_deaths_today}}
+                            <i class="fas fa-stethoscope fa-2x"></i> {{ selectedTextHome.total_active }} {{globalResume.results[0].total_active_cases}}
                         </h3>
                     </div>
                     <div class="col-lg-4 col-12">
                         <h3>
-                            <i class="fas fa-heartbeat fa-2x"></i> Número de casos graves: {{globalResume.results[0].total_serious_cases}}
+                            <i class="fas fa-globe fa-2x"></i> {{ selectedTextHome.total_countries }} {{globalResume.results[0].total_affected_countries}}
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-12">
+                        <h3>
+                            <i class="fas fa-exclamation-circle fa-2x"></i> {{ selectedTextHome.total_cases_today }} {{globalResume.results[0].total_new_cases_today}}
+                        </h3>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <h3>
+                            <i class="fas fa-skull-crossbones fa-2x"></i> {{ selectedTextHome.total_deaths_today }} {{globalResume.results[0].total_new_deaths_today}}
+                        </h3>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <h3>
+                            <i class="fas fa-heartbeat fa-2x"></i> {{ selectedTextHome.total_serious_cases }} {{globalResume.results[0].total_serious_cases}}
                         </h3>
                     </div>
                 </div>
@@ -62,11 +62,11 @@
         </div>
         <div class="row mt-5">
             <div class="col-lg-2 col-12">
-                <i class="fa fa-globe-americas fa-2x"></i> Países disponíveis
+                <i class="fa fa-globe-americas fa-2x"></i> {{ selectedTextHome.available_countries }}
             </div>
             <div class="col-lg-10 col-12">
                 <mat-form-field>
-                    <mat-label>Selecione um país:</mat-label>
+                    <mat-label>{{ selectedTextHome.select_country_message }}</mat-label>
                     <mat-select [(ngModel)]="selectedCountry" (selectionChange)="reload()">
                         <mat-option *ngFor="let country of countries" [value]="country.code">
                             {{country.name}}

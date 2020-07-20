@@ -5,6 +5,10 @@ import { VirusTrackerService } from '@services/virus-tracker.service';
 import { CountryTimeline } from '@models/country-timeline.model';
 import { AlertService } from '@services/alert.service';
 import { DatePipe } from '@angular/common';
+import { TextService } from '@services/text.service';
+import { CountryService } from '@services/country.service';
+import { TextDashboard } from '@shared/models/text-dashboard.model';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-dashboard',
@@ -74,14 +78,33 @@ export class DashboardComponent implements OnInit {
     private allTotalRecoveries: number[];
     private allTotalDeaths: number[];
 
+    public selectedText: TextDashboard;
+    public textDashboards: Array<TextDashboard>;
+    public languageChanged: Subscription;
+
     constructor(
         private _virusService: VirusTrackerService,
         private _alertService: AlertService,
-        private _datepipe: DatePipe) {
+        private _datepipe: DatePipe,
+        private _textService: TextService,
+        private _countryService: CountryService) {
         this.isLoaded = false;
+
+        this.languageChanged = this._countryService.languageChanged.subscribe({
+            next: (newValue: string) => {
+                if (newValue) {
+                    this.selectedText = this.textDashboards.find(x => x.language == newValue);
+                    this.setChartData('5');
+                }
+            }
+        });
     }
 
     ngOnInit(): void {
+        let language = this._countryService.getLanguage();
+        this.textDashboards = this._textService.getDashboard();
+        this.selectedText = this.textDashboards.find(x => x.language == language);
+
         this.loadData(this.countryCode);
     }
 
@@ -94,28 +117,28 @@ export class DashboardComponent implements OnInit {
             this.allTotalRecoveries = data.timelineitems.map(t => this.allDays.map(d => t[d].total_recoveries))[0];
             this.allTotalDeaths = data.timelineitems.map(t => this.allDays.map(d => t[d].total_deaths))[0];
 
-            let days = [...this.allDays.map(date => this._datepipe.transform(date, 'dd/MM/yyyy'))].reverse().slice(0, 5).reverse();
+            let days = [...this.allDays.map(date => this._datepipe.transform(date, this.selectedText.date_format))].reverse().slice(0, 5).reverse();
             this.barChartLabels = [...days];
             this.barChartData = [
                 {
                     data: [...this.allNewCases].reverse().slice(0, 5).reverse(),
-                    label: 'Novos casos hoje'
+                    label: this.selectedText.total_cases_today
                 },
                 {
                     data: [...this.allNewDeaths].reverse().slice(0, 5).reverse(),
-                    label: 'Novas mortes hoje'
+                    label: this.selectedText.total_deaths_today
                 },
                 {
                     data: [...this.allTotalCases].reverse().slice(0, 5).reverse(),
-                    label: 'Total de casos'
+                    label: this.selectedText.total_cases
                 },
                 {
                     data: [...this.allTotalRecoveries].reverse().slice(0, 5).reverse(),
-                    label: 'Total de pessoas curadas'
+                    label: this.selectedText.total_recovered
                 },
                 {
                     data: [...this.allTotalDeaths].reverse().slice(0, 5).reverse(),
-                    label: 'Total de mortes'
+                    label: this.selectedText.total_deaths
                 }
             ];
 
@@ -128,104 +151,104 @@ export class DashboardComponent implements OnInit {
     public setChartData(period: string): void {
         switch (period) {
             case '5':
-                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, 'dd/MM/yyyy'))].reverse().slice(0, 5).reverse();
+                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, this.selectedText.date_format))].reverse().slice(0, 5).reverse();
                 this.barChartData = [
                     {
                         data: [...this.allNewCases].reverse().slice(0, 5).reverse(),
-                        label: 'Novos casos hoje'
+                        label: this.selectedText.total_cases_today
                     },
                     {
                         data: [...this.allNewDeaths].reverse().slice(0, 5).reverse(),
-                        label: 'Novas mortes hoje'
+                        label: this.selectedText.total_deaths_today
                     },
                     {
                         data: [...this.allTotalCases].reverse().slice(0, 5).reverse(),
-                        label: 'Total de casos'
+                        label: this.selectedText.total_cases
                     },
                     {
                         data: [...this.allTotalRecoveries].reverse().slice(0, 5).reverse(),
-                        label: 'Total de pessoas curadas'
+                        label: this.selectedText.total_recovered
                     },
                     {
                         data: [...this.allTotalDeaths].reverse().slice(0, 5).reverse(),
-                        label: 'Total de mortes'
+                        label: this.selectedText.total_deaths
                     }
                 ];
                 break;
             case '15':
-                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, 'dd/MM/yyyy'))].reverse().slice(0, 15).reverse();
+                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, this.selectedText.date_format))].reverse().slice(0, 15).reverse();
                 this.barChartData = [
                     {
                         data: [...this.allNewCases].reverse().slice(0, 15).reverse(),
-                        label: 'Novos casos hoje'
+                        label: this.selectedText.total_cases_today
                     },
                     {
                         data: [...this.allNewDeaths].reverse().slice(0, 15).reverse(),
-                        label: 'Novas mortes hoje'
+                        label: this.selectedText.total_deaths_today
                     },
                     {
                         data: [...this.allTotalCases].reverse().slice(0, 15).reverse(),
-                        label: 'Total de casos'
+                        label: this.selectedText.total_cases
                     },
                     {
                         data: [...this.allTotalRecoveries].reverse().slice(0, 15).reverse(),
-                        label: 'Total de pessoas curadas'
+                        label: this.selectedText.total_recovered
                     },
                     {
                         data: [...this.allTotalDeaths].reverse().slice(0, 15).reverse(),
-                        label: 'Total de mortes'
+                        label: this.selectedText.total_deaths
                     }
                 ];
 
                 break;
             case '30':
-                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, 'dd/MM/yyyy'))].reverse().slice(0, 30).reverse();
+                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, this.selectedText.date_format))].reverse().slice(0, 30).reverse();
                 this.barChartData = [
                     {
                         data: [...this.allNewCases].reverse().slice(0, 30).reverse(),
-                        label: 'Novos casos hoje'
+                        label: this.selectedText.total_cases_today
                     },
                     {
                         data: [...this.allNewDeaths].reverse().slice(0, 30).reverse(),
-                        label: 'Novas mortes hoje'
+                        label: this.selectedText.total_deaths_today
                     },
                     {
                         data: [...this.allTotalCases].reverse().slice(0, 30).reverse(),
-                        label: 'Total de casos'
+                        label: this.selectedText.total_cases
                     },
                     {
                         data: [...this.allTotalRecoveries].reverse().slice(0, 30).reverse(),
-                        label: 'Total de pessoas curadas'
+                        label: this.selectedText.total_recovered
                     },
                     {
                         data: [...this.allTotalDeaths].reverse().slice(0, 30).reverse(),
-                        label: 'Total de mortes'
+                        label: this.selectedText.total_deaths
                     }
                 ];
 
                 break;
             default:
-                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, 'dd/MM/yyyy'))];
+                this.barChartLabels = [...this.allDays.map(date => this._datepipe.transform(date, this.selectedText.date_format))];
                 this.barChartData = [
                     {
                         data: [...this.allNewCases],
-                        label: 'Novos casos hoje'
+                        label: this.selectedText.total_cases_today
                     },
                     {
                         data: [...this.allNewDeaths],
-                        label: 'Novas mortes hoje'
+                        label: this.selectedText.total_deaths_today
                     },
                     {
                         data: [...this.allTotalCases],
-                        label: 'Total de casos'
+                        label: this.selectedText.total_cases
                     },
                     {
                         data: [...this.allTotalRecoveries],
-                        label: 'Total de pessoas curadas'
+                        label: this.selectedText.total_recovered
                     },
                     {
                         data: [...this.allTotalDeaths],
-                        label: 'Total de mortes'
+                        label: this.selectedText.total_deaths
                     }
                 ];
 
