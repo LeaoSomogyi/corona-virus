@@ -1,3 +1,17 @@
 .active {
     color:red !important;
 }
+
+
+
+@media (min-width: 320px) and (max-width: 767px) {
+  
+    .mobile-menu {
+        margin-left: auto !important;
+    }
+
+    .mobile-logo {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}

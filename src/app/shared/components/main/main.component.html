@@ -20,11 +20,11 @@
   </div>
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center">
+      <a href="#" class="navbar-brand d-flex align-items-center mobile-logo">
         <i class="fa-2x fa fa-biohazard"></i>&nbsp;
         <strong>Corona Vírus Data</strong>
       </a>
-      <div class="d-flex flex-row">
+      <div class="d-flex flex-row mobile-menu">
         <a href="javascript:;" (click)="setCountry('br')" class="navbar-brand d-flex align-items-center p-2">
           <img src="./assets/img/brazil.png" class="img-fluid rounded-circle" alt="PT-BR" width="40"> &nbsp;
           <strong [class.active]="selectedCountry?.language == 'br' ? true : null">PT-BR</strong>
